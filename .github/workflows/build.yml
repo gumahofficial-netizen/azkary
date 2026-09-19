@@ -27,6 +27,9 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Get Flutter Version
+        run: flutter --version
+
       - name: Install Dependencies
         run: flutter pub get
 
@@ -34,10 +37,10 @@ jobs:
         run: dart scripts/download_assets.dart
 
       - name: Build Release APK
-        run: flutter build apk --release
+        run: flutter build apk --release --verbose
 
       - name: Build App Bundle (AAB)
-        run: flutter build appbundle --release
+        run: flutter build appbundle --release --verbose
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
